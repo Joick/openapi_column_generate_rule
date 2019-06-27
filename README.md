@@ -12,6 +12,8 @@
 | expire\_time | 300 |
 | timestamp | 1561360494 |
 
+示例接口文档可以参考 [开放平台接口文档示例](api%20doc)
+
 ### ① 记录授权码（Authorize Code）到缓存中
 
 （使用redis-string格式记录）

@@ -1,20 +1,20 @@
 # 开放平台接口（示例）
 
-- [接口说明]
-	- [公共请求/响应]
-	- [请求获取授权码 Authorize Code]
-	- [获取令牌 Access Token]
-	- [查询会员授权信息]
-- [验签生成规则（考虑完善中）]
-- [公共响应码说明]
-- [数据字典]
+- [接口说明](#-api_explain-)
+	- [公共请求/响应](#-common-request-)
+	- [请求获取授权码&nbsp;Authorize&nbsp;Code](#-authorizecode-get_authorize_code-)
+	- [获取令牌&nbsp;Access&nbsp;Token](#-accesstoken-get_access_token-)
+	- [查询会员授权信息](#-get_user_auth_info-)
+- [验签生成规则（考虑完善中）](#-generate_sign_data_rule-)
+- [公共响应码说明](#-common_response-)
+- [数据字典](#-dictionary-)
 
-## 接口说明
+## 接口说明 <api_explain>
 
 1. 在使用一下开放接口之前，需要在开放平台，填写注册开发者账号，获取应用唯一标识（app\_code）；
 2. 在开放接口功能列表中添加相应的接口功能后，即可使用开放接口功能
 
-### 公共请求/响应
+### 公共请求/响应 <common-request>
 
 **公共请求域名**
 >http://openapi.testPlatform.com
@@ -40,7 +40,7 @@
 
 
 
-## 请求获取授权码 Authorize Code
+## 请求获取授权码&nbsp;Authorize&nbsp;Code <get_authorize_code>
 
 说明
 
@@ -84,7 +84,7 @@ http://open.testPlatform.com/auth/authorize?scope=base_Info&redirect_uri=http%3a
 http://www.example.com/callback?app_code=hr78hif9q84t94t9&authorize_code=X1da4d9g3W4FG3&scope=base_Info&expire_time=300
 ```
 
-## 获取令牌 Access Token
+## 获取令牌&nbsp;Access&nbsp;Token <get_access_token>
 
 **请求地址**
 
@@ -137,7 +137,7 @@ http://www.example.com/callback?app_code=hr78hif9q84t94t9&authorize_code=X1da4d9
 ```
 
 
-## 查询会员授权信息
+## 查询会员授权信息 <get_user_auth_info>
 
 **请求地址**
 
@@ -194,7 +194,7 @@ http://openapi.testPlatform.com/auth/userInfoShare?access_token=9ba6b21d9141b83e
 
 
 
-## 验签生成规则（考虑完善中）
+## 验签生成规则（考虑完善中） <generate_sign_data_rule>
 
 将请求数据包中请求参数正序排序后，以"参数1参数值1参数2参数值2…."的格式拼接成字符串，之间不使用符号（如遇到参数值为对象或数组的，则转成json格式，保留数据符号），在数据末尾加上时间戳和Secret Key（在开放平台注册时生成） 的值。对字符串进行MD5加密，32位
 
@@ -210,15 +210,18 @@ redirect_urihttp://example.com/callbackscopebase_Info
 
 行尾拼接时间戳Secret Keyredirect_urihttp://example.com/callbackscopebase_Info15608235138dsh4mgkxnxf20sk7ksle7w3
 
-使用MD5加密输出（32位）87ccb60ccc105711065722cb098d21e6
+使用MD5加密输出（32位）
+
+87ccb60ccc105711065722cb098d21e6
 
 之后的请求将sign_data数据写入请求的header中发送请求
 
 ```
 
-（或者可以考虑使用接入的平台在开放平台注册时生成的密钥（公钥）进行加密，在接口拦截器处解密验证数据）
+（或者可以考虑使用接入的平台在开放平台注册时生成的密钥（公钥）进行加密，在接口拦截器处解密验证数据）  
+（C#/.NET平台可以使用SortedList对象快速排序）
 
-## 公共响应码说明
+## 公共响应码说明 <common_response>
 
 | code（响应状态码） | msg（响应状态描述） | 说明 |
 | --- | --- | --- |
@@ -231,7 +234,7 @@ redirect_urihttp://example.com/callbackscopebase_Info
 | 30005 | Access token has expired | 令牌已过期，请重新获取Access Token |
 | 40001 | Insufficient permissions | 权限不足 |
 
-## 数据字典 dictionary
+## 数据字典 <dictionary>
 
 <table>
 <tr><td>参数</td><td>可选内容</td><td>说明</td></tr>
